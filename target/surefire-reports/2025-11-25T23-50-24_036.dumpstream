@@ -1,0 +1,5 @@
+# Created at 2025-11-25T23:50:24.217
+Boot Manifest-JAR contains absolute paths in classpath 'D:\Archivos\Nube\Escritorio\VII SEMESTRE\VERIFICACIÓN Y VALIDACIÓN DE SOFTWARE\LABO 1\junit-ex1-blueprint\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+

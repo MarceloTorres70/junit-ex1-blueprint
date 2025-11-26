@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Calculator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">junit-test-sample-01</a> &gt; <a href="index.source.html" class="el_package">ec.edu.epn</a> &gt; <span class="el_source">Calculator.java</span></div><h1>Calculator.java</h1><pre class="source lang-java linenums">package ec.edu.epn;
+
+<span class="fc" id="L3">public class Calculator {</span>
+    /**
+     * Adds two integers.
+     * @param a The first number.
+     * @param b The second number.
+     * @return The sum of a and b.
+     */
+    public int add(int a, int b) {
+<span class="fc" id="L11">        return a + b;</span>
+    }
+
+    /**
+     * Subtracts the second number from the first.
+     * @param a The number to subtract from.
+     * @param b The number to subtract.
+     * @return The difference between a and b.
+     */
+    public int subtract(int a, int b) {
+<span class="fc" id="L21">        return a - b;</span>
+    }
+
+    /**
+     * Multiplies two integers.
+     * @param a The first number.
+     * @param b The second number.
+     * @return The product of a and b.
+     */
+    public int multiply(int a, int b) {
+<span class="fc" id="L31">        return a * b;</span>
+    }
+
+    /**
+     * Divides the first number by the second.
+     * Note: Throws an exception if the divisor is zero.
+     * @param a The numerator (dividend).
+     * @param b The divisor.
+     * @return The quotient of the division.
+     * @throws IllegalArgumentException If the divisor (b) is zero.
+     */
+    public double divide(int a, int b) {
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (b == 0) {</span>
+            // It's good practice to throw a standard exception for invalid input errors.
+<span class="fc" id="L45">            throw new IllegalArgumentException(&quot;The divisor cannot be zero.&quot;);</span>
+        }
+        // Cast to (double) to ensure floating-point division, even with integers.
+<span class="fc" id="L48">        return (double) a / b;</span>
+    }
+
+    /**
+     * Checks if a number is even.
+     * @param number The number to check.
+     * @return true if the number is even, false otherwise.
+     */
+    public boolean isEven(int number) {
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        return number % 2 == 0;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StringValidator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">junit-test-sample-01</a> &gt; <a href="index.source.html" class="el_package">ec.edu.epn</a> &gt; <span class="el_source">StringValidator.java</span></div><h1>StringValidator.java</h1><pre class="source lang-java linenums">package ec.edu.epn;
+
+/**
+ * Clase utilitaria para validar cadenas de texto.
+ * Proporciona métodos para verificar que las cadenas cumplan con ciertos criterios.
+ */
+<span class="fc" id="L7">public class StringValidator {</span>
+
+    /**
+     * Valida que una cadena no sea null, vacía o contenga solo espacios en blanco.
+     * 
+     * Este método verifica tres condiciones:
+     * - Si la cadena es null
+     * - Si la cadena está vacía (length == 0)
+     * - Si la cadena contiene solo espacios en blanco (después de trim())
+     * 
+     * Si alguna de estas condiciones se cumple, se lanza una IllegalArgumentException
+     * con un mensaje descriptivo.
+     * 
+     * @param input La cadena de texto a validar
+     * @throws IllegalArgumentException Si la cadena es null, vacía o contiene solo espacios
+     * 
+     * @example
+     * &lt;pre&gt;
+     * StringValidator validator = new StringValidator();
+     * validator.validateNotEmpty(&quot;texto válido&quot;);  // No lanza excepción
+     * validator.validateNotEmpty(null);            // Lanza IllegalArgumentException
+     * validator.validateNotEmpty(&quot;&quot;);              // Lanza IllegalArgumentException
+     * validator.validateNotEmpty(&quot;   &quot;);          // Lanza IllegalArgumentException
+     * &lt;/pre&gt;
+     */
+    public void validateNotEmpty(String input) {
+        // Verificar si la cadena es null
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (input == null) {</span>
+<span class="fc" id="L35">            throw new IllegalArgumentException(&quot;The string cannot be null or empty.&quot;);</span>
+        }
+        
+        // Verificar si la cadena está vacía o contiene solo espacios en blanco
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if (input.trim().isEmpty()) {</span>
+<span class="fc" id="L40">            throw new IllegalArgumentException(&quot;The string cannot be null or empty.&quot;);</span>
+        }
+<span class="fc" id="L42">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
