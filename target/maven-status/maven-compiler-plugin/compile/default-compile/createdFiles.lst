@@ -1,2 +1,4 @@
-ec\edu\epn\Calculator.class
-ec\edu\epn\StringValidator.class
+com\example\demo\DemoApplication.class
+com\example\demo\repository\CakeRepository.class
+com\example\demo\model\Cake.class
+com\example\demo\controller\CakeController.class
