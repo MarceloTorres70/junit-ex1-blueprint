@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CakeController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">junit-test-sample-01</a> &gt; <a href="index.source.html" class="el_package">com.example.demo.controller</a> &gt; <span class="el_source">CakeController.java</span></div><h1>CakeController.java</h1><pre class="source lang-java linenums">package com.example.demo.controller;
+
+import com.example.demo.model.Cake;
+import com.example.demo.repository.CakeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * Controlador REST para manejar las peticiones relacionadas con pasteles.
+ */
+@RestController
+<span class="fc" id="L23">public class CakeController {</span>
+
+    @Autowired
+    private CakeRepository cakeRepository;
+
+    /**
+     * Endpoint raíz que retorna un mensaje de bienvenida.
+     * 
+     * @return Mensaje de bienvenida
+     */
+    @GetMapping(&quot;/&quot;)
+    public String hello() {
+<span class="nc" id="L35">        return &quot;Hola Mundo Spring Boot&quot;;</span>
+    }
+
+    /**
+     * Endpoint que retorna la lista de todos los pasteles.
+     * 
+     * @return Lista de objetos Cake
+     */
+    @GetMapping(&quot;/cakes&quot;)
+    public List&lt;Cake&gt; getAllCakes() {
+<span class="fc" id="L45">        return cakeRepository.findAll();</span>
+    }
+
+    /**
+     * Endpoint que retorna un pastel específico por su ID.
+     * 
+     * @param id El identificador del pastel a buscar
+     * @return ResponseEntity con el Cake si existe (200 OK), o 404 Not Found si no existe
+     */
+    @GetMapping(&quot;/cakes/{id}&quot;)
+    public ResponseEntity&lt;Cake&gt; getCakeById(@PathVariable Long id) {
+<span class="fc" id="L56">        Optional&lt;Cake&gt; cake = cakeRepository.findById(id);</span>
+        
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (cake.isPresent()) {</span>
+<span class="fc" id="L59">            return ResponseEntity.ok(cake.get());</span>
+        } else {
+<span class="fc" id="L61">            return ResponseEntity.notFound().build();</span>
+        }
+    }
+
+    /**
+     * Endpoint para crear un nuevo pastel.
+     * 
+     * @param cake El objeto Cake a guardar (viene en el body de la petición)
+     * @return ResponseEntity con el Cake guardado y código 201 Created
+     */
+    @PostMapping(&quot;/cakes&quot;)
+    public ResponseEntity&lt;Cake&gt; createCake(@RequestBody Cake cake) {
+<span class="nc" id="L73">        Cake savedCake = cakeRepository.save(cake);</span>
+<span class="nc" id="L74">        return ResponseEntity.status(HttpStatus.CREATED).body(savedCake);</span>
+    }
+
+    /**
+     * Endpoint para actualizar un pastel existente.
+     * 
+     * @param id El identificador del pastel a actualizar
+     * @param cakeDetails Los nuevos datos del pastel (viene en el body de la petición)
+     * @return ResponseEntity con el Cake actualizado (200 OK) si existe, o 404 Not Found si no existe
+     */
+    @PutMapping(&quot;/cakes/{id}&quot;)
+    public ResponseEntity&lt;Cake&gt; updateCake(@PathVariable Long id, @RequestBody Cake cakeDetails) {
+<span class="fc" id="L86">        Optional&lt;Cake&gt; optionalCake = cakeRepository.findById(id);</span>
+        
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        if (optionalCake.isPresent()) {</span>
+<span class="fc" id="L89">            Cake cake = optionalCake.get();</span>
+<span class="fc" id="L90">            cake.setTitle(cakeDetails.getTitle());</span>
+<span class="fc" id="L91">            cake.setDescription(cakeDetails.getDescription());</span>
+<span class="fc" id="L92">            Cake updatedCake = cakeRepository.save(cake);</span>
+<span class="fc" id="L93">            return ResponseEntity.ok(updatedCake);</span>
+        } else {
+<span class="fc" id="L95">            return ResponseEntity.notFound().build();</span>
+        }
+    }
+
+    /**
+     * Endpoint para eliminar un pastel por su ID.
+     * 
+     * @param id El identificador del pastel a eliminar
+     * @return ResponseEntity con código 204 No Content si existe y se elimina, o 404 Not Found si no existe
+     */
+    @DeleteMapping(&quot;/cakes/{id}&quot;)
+    public ResponseEntity&lt;Void&gt; deleteCake(@PathVariable Long id) {
+<span class="fc" id="L107">        Optional&lt;Cake&gt; optionalCake = cakeRepository.findById(id);</span>
+        
+<span class="pc bpc" id="L109" title="1 of 2 branches missed.">        if (optionalCake.isPresent()) {</span>
+<span class="fc" id="L110">            cakeRepository.deleteById(id);</span>
+<span class="fc" id="L111">            return ResponseEntity.noContent().build();</span>
+        } else {
+<span class="nc" id="L113">            return ResponseEntity.notFound().build();</span>
+        }
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Cake.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">junit-test-sample-01</a> &gt; <a href="index.source.html" class="el_package">com.example.demo.model</a> &gt; <span class="el_source">Cake.java</span></div><h1>Cake.java</h1><pre class="source lang-java linenums">package com.example.demo.model;
+
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+/**
+ * Entidad Cake que representa un pastel en la base de datos.
+ * Utiliza Lombok @Data para generar automáticamente getters, setters, toString, etc.
+ */
+@Entity
+@Data
+public class Cake {
+    
+    /**
+     * Identificador único del pastel.
+     * Se genera automáticamente por la base de datos.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    /**
+     * Título o nombre del pastel.
+     */
+    private String title;
+    
+    /**
+     * Descripción del pastel.
+     */
+    private String description;
+    
+    // Constructores
+<span class="fc" id="L37">    public Cake() {</span>
+        // Constructor por defecto requerido por JPA
+<span class="fc" id="L39">    }</span>
+    
+<span class="fc" id="L41">    public Cake(String title, String description) {</span>
+<span class="fc" id="L42">        this.title = title;</span>
+<span class="fc" id="L43">        this.description = description;</span>
+<span class="fc" id="L44">    }</span>
+    
+    // Getters y Setters (generados por @Data, pero aquí por si Lombok no funciona)
+    public Long getId() {
+<span class="fc" id="L48">        return id;</span>
+    }
+    
+    public void setId(Long id) {
+<span class="fc" id="L52">        this.id = id;</span>
+<span class="fc" id="L53">    }</span>
+    
+    public String getTitle() {
+<span class="fc" id="L56">        return title;</span>
+    }
+    
+    public void setTitle(String title) {
+<span class="fc" id="L60">        this.title = title;</span>
+<span class="fc" id="L61">    }</span>
+    
+    public String getDescription() {
+<span class="fc" id="L64">        return description;</span>
+    }
+    
+    public void setDescription(String description) {
+<span class="fc" id="L68">        this.description = description;</span>
+<span class="fc" id="L69">    }</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
