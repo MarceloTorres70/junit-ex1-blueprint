@@ -13,4 +13,3 @@ public interface CakeRepository extends JpaRepository<Cake, Long> {
     // JpaRepository proporciona métodos como:
     // findAll(), findById(), save(), delete(), etc.
 }
-

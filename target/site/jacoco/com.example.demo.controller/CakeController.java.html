@@ -20,10 +20,14 @@ import java.util.Optional;
  * Controlador REST para manejar las peticiones relacionadas con pasteles.
  */
 @RestController
-<span class="fc" id="L23">public class CakeController {</span>
+public class CakeController {
+
+    private final CakeRepository cakeRepository;
 
     @Autowired
-    private CakeRepository cakeRepository;
+<span class="fc" id="L28">    public CakeController(CakeRepository cakeRepository) {</span>
+<span class="fc" id="L29">        this.cakeRepository = cakeRepository;</span>
+<span class="fc" id="L30">    }</span>
 
     /**
      * Endpoint raíz que retorna un mensaje de bienvenida.
@@ -32,7 +36,7 @@ import java.util.Optional;
      */
     @GetMapping(&quot;/&quot;)
     public String hello() {
-<span class="nc" id="L35">        return &quot;Hola Mundo Spring Boot&quot;;</span>
+<span class="nc" id="L39">        return &quot;Hola Mundo Spring Boot&quot;;</span>
     }
 
     /**
@@ -42,7 +46,7 @@ import java.util.Optional;
      */
     @GetMapping(&quot;/cakes&quot;)
     public List&lt;Cake&gt; getAllCakes() {
-<span class="fc" id="L45">        return cakeRepository.findAll();</span>
+<span class="fc" id="L49">        return cakeRepository.findAll();</span>
     }
 
     /**
@@ -53,12 +57,12 @@ import java.util.Optional;
      */
     @GetMapping(&quot;/cakes/{id}&quot;)
     public ResponseEntity&lt;Cake&gt; getCakeById(@PathVariable Long id) {
-<span class="fc" id="L56">        Optional&lt;Cake&gt; cake = cakeRepository.findById(id);</span>
+<span class="fc" id="L60">        Optional&lt;Cake&gt; cake = cakeRepository.findById(id);</span>
         
-<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (cake.isPresent()) {</span>
-<span class="fc" id="L59">            return ResponseEntity.ok(cake.get());</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        if (cake.isPresent()) {</span>
+<span class="fc" id="L63">            return ResponseEntity.ok(cake.get());</span>
         } else {
-<span class="fc" id="L61">            return ResponseEntity.notFound().build();</span>
+<span class="fc" id="L65">            return ResponseEntity.notFound().build();</span>
         }
     }
 
@@ -70,8 +74,8 @@ import java.util.Optional;
      */
     @PostMapping(&quot;/cakes&quot;)
     public ResponseEntity&lt;Cake&gt; createCake(@RequestBody Cake cake) {
-<span class="nc" id="L73">        Cake savedCake = cakeRepository.save(cake);</span>
-<span class="nc" id="L74">        return ResponseEntity.status(HttpStatus.CREATED).body(savedCake);</span>
+<span class="nc" id="L77">        Cake savedCake = cakeRepository.save(cake);</span>
+<span class="nc" id="L78">        return ResponseEntity.status(HttpStatus.CREATED).body(savedCake);</span>
     }
 
     /**
@@ -83,16 +87,16 @@ import java.util.Optional;
      */
     @PutMapping(&quot;/cakes/{id}&quot;)
     public ResponseEntity&lt;Cake&gt; updateCake(@PathVariable Long id, @RequestBody Cake cakeDetails) {
-<span class="fc" id="L86">        Optional&lt;Cake&gt; optionalCake = cakeRepository.findById(id);</span>
+<span class="fc" id="L90">        Optional&lt;Cake&gt; optionalCake = cakeRepository.findById(id);</span>
         
-<span class="fc bfc" id="L88" title="All 2 branches covered.">        if (optionalCake.isPresent()) {</span>
-<span class="fc" id="L89">            Cake cake = optionalCake.get();</span>
-<span class="fc" id="L90">            cake.setTitle(cakeDetails.getTitle());</span>
-<span class="fc" id="L91">            cake.setDescription(cakeDetails.getDescription());</span>
-<span class="fc" id="L92">            Cake updatedCake = cakeRepository.save(cake);</span>
-<span class="fc" id="L93">            return ResponseEntity.ok(updatedCake);</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        if (optionalCake.isPresent()) {</span>
+<span class="fc" id="L93">            Cake cake = optionalCake.get();</span>
+<span class="fc" id="L94">            cake.setTitle(cakeDetails.getTitle());</span>
+<span class="fc" id="L95">            cake.setDescription(cakeDetails.getDescription());</span>
+<span class="fc" id="L96">            Cake updatedCake = cakeRepository.save(cake);</span>
+<span class="fc" id="L97">            return ResponseEntity.ok(updatedCake);</span>
         } else {
-<span class="fc" id="L95">            return ResponseEntity.notFound().build();</span>
+<span class="fc" id="L99">            return ResponseEntity.notFound().build();</span>
         }
     }
 
@@ -104,19 +108,15 @@ import java.util.Optional;
      */
     @DeleteMapping(&quot;/cakes/{id}&quot;)
     public ResponseEntity&lt;Void&gt; deleteCake(@PathVariable Long id) {
-<span class="fc" id="L107">        Optional&lt;Cake&gt; optionalCake = cakeRepository.findById(id);</span>
+<span class="fc" id="L111">        Optional&lt;Cake&gt; optionalCake = cakeRepository.findById(id);</span>
         
-<span class="pc bpc" id="L109" title="1 of 2 branches missed.">        if (optionalCake.isPresent()) {</span>
-<span class="fc" id="L110">            cakeRepository.deleteById(id);</span>
-<span class="fc" id="L111">            return ResponseEntity.noContent().build();</span>
+<span class="pc bpc" id="L113" title="1 of 2 branches missed.">        if (optionalCake.isPresent()) {</span>
+<span class="fc" id="L114">            cakeRepository.deleteById(id);</span>
+<span class="fc" id="L115">            return ResponseEntity.noContent().build();</span>
         } else {
-<span class="nc" id="L113">            return ResponseEntity.notFound().build();</span>
+<span class="nc" id="L117">            return ResponseEntity.notFound().build();</span>
         }
     }
 }
-
-
-
-
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

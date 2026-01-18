@@ -2,5 +2,5 @@ projectKey=junit-ex1-blueprint
 serverUrl=http://localhost:9000
 serverVersion=26.1.0.118079
 dashboardUrl=http://localhost:9000/dashboard?id=junit-ex1-blueprint
-ceTaskId=08a546bd-d6ef-40b5-9b41-bfbe76d624e5
-ceTaskUrl=http://localhost:9000/api/ce/task?id=08a546bd-d6ef-40b5-9b41-bfbe76d624e5
+ceTaskId=01142554-0f6e-43dd-9386-b65d6e4432c6
+ceTaskUrl=http://localhost:9000/api/ce/task?id=01142554-0f6e-43dd-9386-b65d6e4432c6

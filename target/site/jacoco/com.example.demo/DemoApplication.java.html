@@ -2,6 +2,8 @@
 
 import com.example.demo.model.Cake;
 import com.example.demo.repository.CakeRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,11 +14,14 @@ import org.springframework.context.annotation.Bean;
  * Esta clase inicia el contexto de Spring y levanta el servidor embebido.
  */
 @SpringBootApplication
-<span class="fc" id="L15">public class DemoApplication {</span>
+<span class="fc" id="L17">public class DemoApplication {</span>
+
+<span class="fc" id="L19">    private static final Logger logger = LoggerFactory.getLogger(DemoApplication.class);</span>
+
 
     public static void main(String[] args) {
-<span class="nc" id="L18">        SpringApplication.run(DemoApplication.class, args);</span>
-<span class="nc" id="L19">    }</span>
+<span class="nc" id="L23">        SpringApplication.run(DemoApplication.class, args);</span>
+<span class="nc" id="L24">    }</span>
 
     /**
      * Bean que se ejecuta al iniciar la aplicación para cargar datos de prueba.
@@ -24,24 +29,24 @@ import org.springframework.context.annotation.Bean;
      */
     @Bean
     CommandLineRunner initDatabase(CakeRepository cakeRepository) {
-<span class="fc" id="L27">        return args -&gt; {</span>
+<span class="fc" id="L32">        return args -&gt; {</span>
             // Verificar si ya existen datos para evitar duplicados
-<span class="pc bpc" id="L29" title="1 of 2 branches missed.">            if (cakeRepository.count() == 0) {</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">            if (cakeRepository.count() == 0) {</span>
                 // Crear y guardar el primer pastel
-<span class="fc" id="L31">                Cake cake1 = new Cake();</span>
-<span class="fc" id="L32">                cake1.setTitle(&quot;Banana cake&quot;);</span>
-<span class="fc" id="L33">                cake1.setDescription(&quot;Donkey kongs favourite&quot;);</span>
-<span class="fc" id="L34">                cakeRepository.save(cake1);</span>
+<span class="fc" id="L36">                Cake cake1 = new Cake();</span>
+<span class="fc" id="L37">                cake1.setTitle(&quot;Banana cake&quot;);</span>
+<span class="fc" id="L38">                cake1.setDescription(&quot;Donkey kongs favourite&quot;);</span>
+<span class="fc" id="L39">                cakeRepository.save(cake1);</span>
 
                 // Crear y guardar el segundo pastel
-<span class="fc" id="L37">                Cake cake2 = new Cake();</span>
-<span class="fc" id="L38">                cake2.setTitle(&quot;Birthday cake&quot;);</span>
-<span class="fc" id="L39">                cake2.setDescription(&quot;A yearly treat&quot;);</span>
-<span class="fc" id="L40">                cakeRepository.save(cake2);</span>
+<span class="fc" id="L42">                Cake cake2 = new Cake();</span>
+<span class="fc" id="L43">                cake2.setTitle(&quot;Birthday cake&quot;);</span>
+<span class="fc" id="L44">                cake2.setDescription(&quot;A yearly treat&quot;);</span>
+<span class="fc" id="L45">                cakeRepository.save(cake2);</span>
 
-<span class="fc" id="L42">                System.out.println(&quot;Datos de prueba cargados exitosamente.&quot;);</span>
+<span class="fc" id="L47">                logger.info(&quot;Datos de prueba cargados exitosamente.&quot;);</span>
             }
-<span class="fc" id="L44">        };</span>
+<span class="fc" id="L49">        };</span>
     }
 }
 

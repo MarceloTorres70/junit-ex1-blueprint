@@ -22,8 +22,12 @@ import java.util.Optional;
 @RestController
 public class CakeController {
 
+    private final CakeRepository cakeRepository;
+
     @Autowired
-    private CakeRepository cakeRepository;
+    public CakeController(CakeRepository cakeRepository) {
+        this.cakeRepository = cakeRepository;
+    }
 
     /**
      * Endpoint raíz que retorna un mensaje de bienvenida.
@@ -114,8 +118,4 @@ public class CakeController {
         }
     }
 }
-
-
-
-
 
