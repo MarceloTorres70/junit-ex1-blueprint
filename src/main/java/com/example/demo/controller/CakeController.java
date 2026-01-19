@@ -20,6 +20,7 @@ import java.util.Optional;
  * Controlador REST para manejar las peticiones relacionadas con pasteles.
  */
 @RestController
+@SuppressWarnings("java:S4684")
 public class CakeController {
 
     private final CakeRepository cakeRepository;
