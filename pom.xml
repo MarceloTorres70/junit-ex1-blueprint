@@ -129,6 +129,28 @@
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.9.1.2184</version>
             </plugin>
+
+            <!-- Git Hooks Maven Plugin (Lab 7) -->
+            <plugin>
+                <groupId>io.github.pepperkit</groupId>
+                <artifactId>git-hooks-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>initHooks</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <hooks>
+                        <pre-commit>
+                            echo "🔍 Ejecutando validación automática pre-commit (Lab 7)..."
+                            mvn clean compile test
+                        </pre-commit>
+                    </hooks>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
